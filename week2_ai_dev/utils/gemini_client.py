@@ -16,7 +16,7 @@ class GeminiClient:
 
 	def __init__(self, api_key: str | None = None, base_url: str | None = None):
 		self.api_key = api_key or GEMINI_API_KEY
-		self.base_url = base_url or os.getenv('GEMINI_API_URL') or "https://generativelanguage.googleapis.com/v1/models"
+		self.base_url = base_url or os.getenv('GEMINI_API_URL') or "https://generativelanguage.googleapis.com/v1beta/models"
 
 	def generate(self, system_prompt: str, user_prompt: str, temperature: float = 0.7, max_tokens: int = 1000, model: str = 'gemini-1.5-flash') -> str:
 		if not self.api_key:
@@ -49,7 +49,7 @@ class GeminiClient:
 		}
 		
 		if system_prompt:
-			payload["systemInstruction"] = {
+			payload["system_instruction"] = {
 				"parts": [
 					{"text": system_prompt}
 				]
